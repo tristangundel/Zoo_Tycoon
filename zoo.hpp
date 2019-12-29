@@ -1,10 +1,23 @@
+/*********************************************************************
+** Program name: zooTycoon
+** Author: Tristan Gundel
+** Date: 10/22/2018
+** Description: This file is one of 13 files that together form a program
+**              with the capability of running a simulation of the game
+**              zoo tycoon. The game will allow the user to purchase
+**              animals, and will keep track of the user's bank balance,
+**              adding to it and subtracting to it accordingly. A random
+**              event will occur each turn (day) of the game.
+*********************************************************************/
 #ifndef ZOO_HPP
 #define ZOO_HPP
 #include "tiger.hpp"
 #include "turtle.hpp"
 #include "penguin.hpp"
 
-
+/* This class will hold the zoo's arrays of animals objects, as well as
+the user's bank balance. It will also contain methods to update these
+variables that will be used in the main function of the application */
 class Zoo
 {
 	private:
@@ -41,7 +54,7 @@ class Zoo
 		int getTurtleArraySize();
 		int getDailyCost();
 		int getDailyIncome();
-		void randomEvent(int);	
+		void randomEvent(int);
 		void resizeTigerArray();
 		void resizePenguinArray();
 		void resizeTurtleArray();
@@ -50,4 +63,4 @@ class Zoo
 		Zoo();
 };
 
-#endif 
+#endif

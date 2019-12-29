@@ -2,12 +2,12 @@
 ** Program name: zooTycoon
 ** Author: Tristan Gundel
 ** Date: 10/22/2018
-** Description: This file is one of 11 files that together form a program
-**              with the capability of running a simulation of the game 
-**              zoo tycoon. The game will allow the user to purchase 
-**              animals, and will keep track of the user's bank balance, 
-**              adding to it and subtracting to it accordingly. A random   
-**              event will occur each turn (day) of the game.  
+** Description: This file is one of 13 files that together form a program
+**              with the capability of running a simulation of the game
+**              zoo tycoon. The game will allow the user to purchase
+**              animals, and will keep track of the user's bank balance,
+**              adding to it and subtracting to it accordingly. A random
+**              event will occur each turn (day) of the game.
 *********************************************************************/
 #include "menu.hpp"
 #include "zoo.hpp"
@@ -20,19 +20,19 @@ int main()
 {
 	//Initialize Zoo and write Introduction message to console
 	srand(time(NULL));
-	Zoo myZoo; 
+	Zoo myZoo;
 	std::cout << "\n\nWelcome to Zoo Tycoon!!!\n" << std::endl;
 	std::cout << "Today you will begin with $50,000 in your zoo's bank account "
 	          << "to begin buying animals and creating your zoo.\n" << std::endl;
-	
-	//Initialize startMenu with options for buying one or two animals to start  
+
+	//Initialize startMenu with options for buying one or two animals to start
 	std::string startMenuOptions[2];
 	startMenuOptions[0] = "Buy One";
 	startMenuOptions[1] = "Buy Two";
 	Menu startMenu(2, &startMenuOptions[0]);
-	
+
 	//Get User selection for number of animals to start with in the zoo
-	std::cout << "\nTigers will cost $10,000 with a daily payoff of $2000." << std::endl;  
+	std::cout << "\nTigers will cost $10,000 with a daily payoff of $2000." << std::endl;
 	std::cout << "How many tigers would you like to buy for the opening of your zoo?\n" << std::endl;
 	startMenu.printMenu(2);
 	startMenu.makeSelection();
@@ -57,10 +57,10 @@ int main()
                 myZoo.addTurtle(1, false);
         }
 
-	//Display bank balance after buying initial animals 
+	//Display bank balance after buying initial animals
 	std::cout << "After buying your first animals the balance in your Zoo's bank account is $"
 		  << myZoo.getBankBalance() << std::endl;
-	
+
 	//Setup mainMenu to display after each turn (day) of the game
 	std::string mainMenuOptions[3];
 	mainMenuOptions[0] = "Buy an adult animal";
@@ -76,23 +76,23 @@ int main()
 	Menu animalMenu(3, &animalMenuOptions[0]);
 
 	int dayCount = 1;
-	do 
+	do
 	{
-		std::cout << "\nDay " << dayCount << ":\n" << std::endl; 	
+		std::cout << "\nDay " << dayCount << ":\n" << std::endl;
 
 		//increase Animal ages
-		myZoo.increaseAnimalAges();		
+		myZoo.increaseAnimalAges();
 
 		//Deduct feeding cost of animals
 		int costOfFood = myZoo.getDailyCost();
 		int currentBalance = myZoo.getBankBalance();
 		myZoo.setBankBalance((currentBalance - costOfFood));
-		std::cout << "After feeding your animals today your bank balance is now " 
+		std::cout << "After feeding your animals today your bank balance is now "
 		          << myZoo.getBankBalance() << std::endl;
 
 		//Random event occurs
 		int randomEvent = (rand() % 4) + 1;
-		myZoo.randomEvent(randomEvent); 
+		myZoo.randomEvent(randomEvent);
 
 		//Add Payoff of the day to the zoo bank balance
 		int payoffOfTheDay = myZoo.getDailyIncome();
@@ -123,10 +123,10 @@ int main()
 				myZoo.addTurtle(3, false);
 			}
 		}
-		
+
 		//Increase day count
-		dayCount += 1; 
-	} 
+		dayCount += 1;
+	}
 	while (!(mainMenu.getSelection() == 3) && (myZoo.getBankBalance() > 0));
 
 	//Print exit messages
@@ -143,4 +143,3 @@ int main()
 	animalMenu.emptyMenuOptions();
 	return 0;
 }
-

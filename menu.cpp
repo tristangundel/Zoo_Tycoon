@@ -1,3 +1,14 @@
+/*********************************************************************
+** Program name: zooTycoon
+** Author: Tristan Gundel
+** Date: 10/22/2018
+** Description: This file is one of 13 files that together form a program
+**              with the capability of running a simulation of the game
+**              zoo tycoon. The game will allow the user to purchase
+**              animals, and will keep track of the user's bank balance,
+**              adding to it and subtracting to it accordingly. A random
+**              event will occur each turn (day) of the game.
+*********************************************************************/
 #include "menu.hpp"
 #include <string>
 #include <iostream>
@@ -11,8 +22,8 @@ Menu::Menu()
 	setMenuOptions(2);
 	for (int i=0; i<numOfOptions; i++)
 	{
-		optionsList[i] = options[i]; 
-	} 
+		optionsList[i] = options[i];
+	}
 }
 
 Menu::Menu(int numbers, std::string *options)
@@ -44,7 +55,7 @@ void Menu::printMenu(int number)
 		std::cout << i << ". ";
 		std::cout << optionsList[index] << std::endl;
 	}
-	std::cout <<"\n\n";		
+	std::cout <<"\n\n";
 }
 
 bool Menu::validateInput(std::string selection)
@@ -71,13 +82,12 @@ void Menu::makeSelection()
 		std::cin.clear();
 		std::cin.ignore(80, '\n');
 		std::getline(std::cin, selection);
-		std::cout << std::endl; 
+		std::cout << std::endl;
 	}
-	userSelection = std::stoi(selection); 
+	userSelection = std::stoi(selection);
 }
 
 int Menu::getSelection()
 {
 	return userSelection;
 }
-
